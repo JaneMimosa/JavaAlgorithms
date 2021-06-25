@@ -38,9 +38,9 @@ public class Main {
 
         // 2.4
         int[] aTwo = Arrays.copyOf(array, array.length);
-       bubbleSort(aTwo);
+        bubbleSort(aTwo);
 
-       //2.5
+        //2.5
         int[] aThree = Arrays.copyOf(array, array.length);
         minSort(aThree);
 
@@ -65,16 +65,14 @@ public class Main {
         Arrays.sort(mArray);
         int firstIndex = 0;
         int lastIndex = mArray.length - 1;
-        while(firstIndex <= lastIndex) {
-            int middleIndex = (firstIndex + lastIndex)/2;
-            if(mArray[middleIndex] == elementToSearch) {
+        while (firstIndex <= lastIndex) {
+            int middleIndex = (firstIndex + lastIndex) / 2;
+            if (mArray[middleIndex] == elementToSearch) {
                 System.out.println("Success: " + middleIndex);
                 break;
-            }
-            else if(mArray[middleIndex] < elementToSearch) {
+            } else if (mArray[middleIndex] < elementToSearch) {
                 firstIndex = middleIndex + 1;
-            }
-            else if(mArray[middleIndex] > elementToSearch) {
+            } else if (mArray[middleIndex] > elementToSearch) {
                 lastIndex = middleIndex - 1;
             }
         }
@@ -84,11 +82,11 @@ public class Main {
     public static void bubbleSort(int[] array) {
         long a = System.nanoTime();
         int buff;
-        boolean sorted= false;
-        while(!sorted) {
+        boolean sorted = false;
+        while (!sorted) {
             sorted = true;
             for (int i = 0; i < array.length - 1; i++) {
-                if(array[i] > array[i + 1]) {
+                if (array[i] > array[i + 1]) {
                     sorted = false;
                     buff = array[i + 1];
                     array[i + 1] = array[i];
@@ -105,8 +103,8 @@ public class Main {
         int buff;
         for (int i = 0; i < array.length - 1; i++) {
             min = i;
-            for (int j = i + 1; j < array.length ; j++) {
-                if(array[j] < array[min]) {
+            for (int j = i + 1; j < array.length; j++) {
+                if (array[j] < array[min]) {
                     min = j;
                 }
                 buff = array[i];
@@ -124,9 +122,9 @@ public class Main {
         for (int i = 1; i < array.length; i++) {
             buff = array[i];
             in = i;
-            while(in > 0 && array[in - 1] >= buff) {
-               array[in] = array[in - 1];
-               in--;
+            while (in > 0 && array[in - 1] >= buff) {
+                array[in] = array[in - 1];
+                in--;
             }
             array[in] = buff;
         }
