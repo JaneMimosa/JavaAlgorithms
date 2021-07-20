@@ -27,12 +27,16 @@ public class HashTable {
     private int hashFunc(int key) {
         return (key % arrSize);
     }
+    private int hashFuncDouble(int key) {
+        return (CONST - (key % CONST));
+    }
 
     public void insert(Item item) {
         int key = item.getKey();
         int hashVal = hashFunc(key);
+        int stepSize = hashFuncDouble(key);
         while (hashArr[hashVal] != null && hashArr[hashVal].getKey() != -1) {
-            ++hashVal;
+            hashVal += stepSize;
             if (hashVal == arrSize) {
                 return;
             }//без этой строчки произойдет ошибка
@@ -43,13 +47,14 @@ public class HashTable {
 
     public Item delete(int key) {
         int hashVal = hashFunc(key);
+        int stepSize = hashFuncDouble(key);
         while (hashArr[hashVal] != null) {
             if (hashArr[hashVal].getKey() == key) {
                 Item temp = hashArr[hashVal];
                 hashArr[hashVal] = nonItem;
                 return temp;
             }
-            ++hashVal;
+            hashVal += stepSize;
             if (hashVal == arrSize) {
                 return null;
             }
@@ -61,11 +66,12 @@ public class HashTable {
 
     public Item find(int key) {
         int hashVal = hashFunc(key);
+        int stepSize = hashFuncDouble(key);
         while (hashArr[hashVal] != null) {
             if (hashArr[hashVal].getKey() == key) {
                 return hashArr[hashVal];
             }
-            ++hashVal;
+            hashVal += stepSize;
             if (hashVal == arrSize) {
                 return null;
             }
